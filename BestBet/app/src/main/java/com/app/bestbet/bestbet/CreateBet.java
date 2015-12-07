@@ -28,6 +28,7 @@ implements View.OnClickListener{
     private TextView betAmount;
     private TextView betDate;
     ArrayList<Person> people;
+    ArrayList<String> names;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ implements View.OnClickListener{
         cancelButton.setOnClickListener(this);
         createBetButton.setOnClickListener(this);
 
-        ArrayList<String> names = new ArrayList<String>();
+        names = new ArrayList<String>();
         people = db.getPeople();
 
         for (Person person: people) {
@@ -62,17 +63,17 @@ implements View.OnClickListener{
         switch (v.getId()) {
             case R.id.btnCreateBet:
                 Bet bet = new Bet();
+                Person p = people.get(names.indexOf(personSpinner.getSelectedItem().toString()));
 
-
-                Person betPerson = people.get(Integer.parseInt(personSpinner.getSelectedItem().toString()));
-
-                bet.setPersonId(betPerson.getId());
+                bet.setPersonId(p.getId());
                 bet.setDescription(String.valueOf(betDescription.getText()));
                 bet.setDate(String.valueOf(betDate.getText()));
                 bet.setAmount(Integer.parseInt(String.valueOf(betAmount.getText())));
                 bet.setCompleted(0);
                 bet.setWon(0);
                 db.insertBet(bet);
+                Toast.makeText(getBaseContext(), p.getName() + " added successfully", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), MainMenu.class));
 
                 break;
             case R.id.btnCancel:
