@@ -59,10 +59,8 @@ public class PastBets extends AppCompatActivity {
 
                         editor.putString("betID", betId);
 
-                        Toast.makeText(getBaseContext(), betId, Toast.LENGTH_SHORT).show();
-
                         editor.commit();
-                        startActivity(new Intent(getApplicationContext(), BetDetails.class));
+                        startActivity(new Intent(getApplicationContext(), PastBetDetails.class));
                     }
                 })
         );

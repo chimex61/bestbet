@@ -106,8 +106,8 @@ public class BestBetDB
             db.execSQL("INSERT INTO person VALUES (2, 'Bob Saget', 0, 0, 0)");
 
             // insert sample bets
-            db.execSQL("INSERT INTO task VALUES (1, 1, 'Bet Bob he can eat a box of nails', 100, date('now'), 1, 1)");
-            db.execSQL("INSERT INTO task VALUES (2, 2, 'Bet that the Seahawks will lose tonight', 20, date('now'), 0, 0)");
+            db.execSQL("INSERT INTO task VALUES (1, 1, 'Bet Bob he can eat a box of nails', 100, '4/2/2015'), 1, 1)");
+            db.execSQL("INSERT INTO task VALUES (2, 2, 'Bet that the Seahawks will lose tonight', 20, '2/3/2015', 0, 0)");
         }
 
         @Override
@@ -168,6 +168,26 @@ public class BestBetDB
         return personList;
     }
 
+    public ArrayList<Person> getPeopleSorted() {
+        ArrayList<Person> personList = new ArrayList<Person>();
+        openReadableDB();
+        Cursor cursor = db.query(PERSON_TABLE,
+                null, null, null, null, null, PERSON_GAINS+" DESC");
+        while (cursor.moveToNext()) {
+            Person person = new Person();
+            person.setId(cursor.getInt(PERSON_ID_COL));
+            person.setName(cursor.getString(PERSON_NAME_COL));
+            person.setWins(cursor.getInt(PERSON_WINS_COL));
+            person.setLosses(cursor.getInt(PERSON_LOSSES_COL));
+            person.setGains(cursor.getInt(PERSON_GAINS_COL));
+
+            personList.add(person);
+        }
+        cursor.close();
+        closeDB();
+        return personList;
+    }
+
     public Person getPerson(String name) {
         String where = PERSON_NAME + "= ?";
         String[] whereArgs = { name };
@@ -198,6 +218,23 @@ public class BestBetDB
         this.closeDB();
 
         return rowID;
+    }
+
+    public int updatePerson(Person person) {
+        ContentValues cv = new ContentValues();
+        cv.put(PERSON_NAME, person.getName());
+        cv.put(PERSON_WINS, person.getWins());
+        cv.put(PERSON_LOSSES, person.getLosses());
+        cv.put(PERSON_GAINS, person.getGains());
+
+        String where = PERSON_ID + "= ?";
+        String[] whereArgs = { String.valueOf(person.getId()) };
+
+        this.openWriteableDB();
+        int rowCount = db.update(PERSON_TABLE, cv, where, whereArgs);
+        this.closeDB();
+
+        return rowCount;
     }
 
 

@@ -15,18 +15,14 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class BetDetails extends AppCompatActivity
-implements View.OnClickListener{
+public class PastBetDetails extends AppCompatActivity implements View.OnClickListener{
 
     private SharedPreferences savedValues;
     private String betId;
     private BestBetDB db;
     private Bet currentBet;
 
-    private Button btnBetWon;
-    private Button btnBetLost;
-    private Button btnUpdateBet;
-    private Button btnDeleteBet;
+    private Button mainMenuButton;
 
     private Spinner nameSpinner;
 
@@ -37,19 +33,9 @@ implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bet_details);
+        setContentView(R.layout.activity_past_bet_details);
 
         db = new BestBetDB(this);
-
-        btnBetWon = (Button) findViewById(R.id.btnCreateBet);
-        btnBetLost = (Button) findViewById(R.id.btnCancel);
-        btnUpdateBet = (Button) findViewById(R.id.btnUpdateBet);
-        btnDeleteBet = (Button) findViewById(R.id.btnDeleteBet);
-
-        btnBetWon.setOnClickListener(this);
-        btnBetLost.setOnClickListener(this);
-        btnUpdateBet.setOnClickListener(this);
-        btnDeleteBet.setOnClickListener(this);
 
         savedValues = getSharedPreferences("SavedValues", MODE_PRIVATE);
         betId = savedValues.getString("betID", "");
@@ -63,7 +49,8 @@ implements View.OnClickListener{
         betAmount.setText(String.valueOf(currentBet.getAmount()));
         betDate.setText(String.valueOf(currentBet.getDate()));
 
-        //Toast.makeText(getBaseContext(), betId, Toast.LENGTH_SHORT).show();
+        mainMenuButton = (Button) findViewById(R.id.btnMainMenu);
+        mainMenuButton.setOnClickListener(this);
 
         ArrayList<String> names = new ArrayList<String>();
         String currentPerson = "";
@@ -80,48 +67,14 @@ implements View.OnClickListener{
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, names);
         nameSpinner.setAdapter(spinnerAdapter);
         nameSpinner.setSelection(names.indexOf(currentPerson));
+        nameSpinner.setEnabled(false);
     }
 
     @Override
     public void onClick(View v) {
         Bet newBet = db.getBet(betId);
         switch (v.getId()) {
-            case R.id.btnCreateBet:
-                Person person = db.getPerson(nameSpinner.getSelectedItem().toString());
-                person.setWins(person.getWins() + 1);
-                person.setGains(person.getGains() + newBet.getAmount());
-                newBet.setCompleted(1);
-                newBet.setWon(1);
-                db.updateBet(newBet);
-                db.updatePerson(person);
-                Toast.makeText(this, "Bet won successfully", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(), MainMenu.class));
-                break;
-            case R.id.btnCancel:
-                Person newPerson = db.getPerson(nameSpinner.getSelectedItem().toString());
-                newBet.setCompleted(1);
-                newBet.setWon(0);
-                newPerson.setLosses(newPerson.getLosses() + 1);
-                newPerson.setGains(newPerson.getGains() - newBet.getAmount());
-                db.updateBet(newBet);
-                db.updatePerson(newPerson);
-                Toast.makeText(this, "Bet lost successfully", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(), MainMenu.class));
-                break;
-            case R.id.btnUpdateBet:
-
-                newBet.setPersonId(db.getPerson(nameSpinner.getSelectedItem().toString()).getId());
-
-                newBet.setAmount(Integer.parseInt(String.valueOf(betAmount.getText())));
-                newBet.setDate(String.valueOf(betDate.getText()));
-                newBet.setDescription(String.valueOf(betDescription.getText()));
-                db.updateBet(newBet);
-                Toast.makeText(this, "Bet updated successfully", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(), MainMenu.class));
-                break;
-            case R.id.btnDeleteBet:
-                db.deleteBet(newBet.getId());
-                Toast.makeText(this, "Bet deleted successfully", Toast.LENGTH_SHORT).show();
+            case R.id.btnMainMenu:
                 startActivity(new Intent(getApplicationContext(), MainMenu.class));
                 break;
         }
@@ -131,7 +84,7 @@ implements View.OnClickListener{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_bet_details, menu);
+        getMenuInflater().inflate(R.menu.menu_past_bet_details, menu);
         return true;
     }
 

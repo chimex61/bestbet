@@ -4,8 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.app.bestbet.bestbet.BetDetails">
-
+    tools:context="com.app.bestbet.bestbet.PastBetDetails">
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,11 +21,9 @@
         android:layout_height="wrap_content"
         android:text="Description:"
         android:textSize="20dp"
-        android:layout_marginTop="10dp"
         android:id="@+id/textView2"
-        android:layout_toLeftOf="@+id/txtBetDescription"
+        android:layout_marginTop="39dp"
         android:layout_below="@+id/textView"
-        android:layout_alignTop="@+id/txtBetDescription"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -34,12 +31,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Amount:"
-        android:layout_marginTop="10dp"
         android:textSize="20dp"
         android:id="@+id/textView4"
-        android:layout_toLeftOf="@+id/txtBetAmount"
         android:layout_below="@+id/textView2"
-        android:layout_alignTop="@+id/txtBetAmount"
+        android:layout_marginTop="98dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -47,92 +42,64 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Date:"
-        android:layout_marginTop="10dp"
         android:textSize="20dp"
         android:id="@+id/textView5"
-        android:layout_toLeftOf="@+id/txtBetDate"
-        android:layout_below="@+id/textView"
-        android:layout_alignTop="@+id/txtBetDate"
+        android:layout_marginTop="153dp"
+        android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bet Won"
+        android:text="Main Menu"
         android:height="60dp"
-        android:width="150dp"
+        android:width="500dp"
         android:layout_marginBottom="15dp"
-        android:layout_marginRight="20dp"
-        android:id="@+id/btnCreateBet"
+        android:id="@+id/btnMainMenu"
         android:layout_marginTop="50dp"
-        android:layout_below="@+id/textView5" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update bet"
-        android:layout_marginRight="20dp"
-        android:height="60dp"
-        android:width="150dp"
-        android:id="@+id/btnUpdateBet"
-        android:layout_below="@+id/btnCreateBet" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bet Lost"
-        android:height="60dp"
-        android:width="160dp"
-        android:id="@+id/btnCancel"
-        android:layout_alignTop="@+id/btnCreateBet"
-        android:layout_toRightOf="@+id/btnCreateBet" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Delete bet"
-        android:height="60dp"
-        android:width="160dp"
-        android:id="@+id/btnDeleteBet"
-        android:layout_alignTop="@+id/btnUpdateBet"
-        android:layout_toRightOf="@+id/btnUpdateBet" />
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtBetDescription"
-        android:layout_marginTop="75dp"
-        android:width="220dp"
-        android:layout_alignRight="@+id/btnCancel" />
+        android:layout_marginTop="70dp"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_alignRight="@+id/btnMainMenu"
+        android:layout_alignEnd="@+id/btnMainMenu"
+        android:editable="false" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtBetAmount"
-        android:width="250dp"
-        android:layout_below="@+id/txtBetDescription"
-        android:layout_alignRight="@+id/btnCancel"
-        android:layout_alignEnd="@+id/btnCancel"
-        android:layout_marginTop="10dp"/>
+        android:layout_toRightOf="@+id/textView4"
+        android:layout_marginTop="195dp"
+        android:layout_alignRight="@+id/btnMainMenu"
+        android:layout_alignEnd="@+id/btnMainMenu"
+        android:editable="false" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtBetDate"
-        android:layout_marginTop="1dp"
-        android:layout_alignRight="@+id/btnCancel"
-        android:layout_alignEnd="@+id/btnCancel"
-        android:width="280dp"
-        android:layout_below="@id/txtBetAmount"/>
+        android:layout_marginTop="250dp"
+        android:layout_toRightOf="@+id/textView5"
+        android:layout_alignRight="@+id/btnMainMenu"
+        android:layout_alignEnd="@+id/btnMainMenu"
+        android:editable="false" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/personSpinner"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/txtBetAmount"
-        android:layout_alignStart="@+id/txtBetAmount" />
+        android:layout_alignStart="@+id/txtBetAmount"
+        android:clickable="false"/>
 
 </RelativeLayout>

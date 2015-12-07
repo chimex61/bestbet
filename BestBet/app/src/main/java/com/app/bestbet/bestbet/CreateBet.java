@@ -12,9 +12,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CreateBet extends AppCompatActivity
 implements View.OnClickListener{
@@ -63,16 +64,18 @@ implements View.OnClickListener{
         switch (v.getId()) {
             case R.id.btnCreateBet:
                 Bet bet = new Bet();
-                Person p = people.get(names.indexOf(personSpinner.getSelectedItem().toString()));
-
-                bet.setPersonId(p.getId());
+                bet.setPersonId(db.getPerson(personSpinner.getSelectedItem().toString()).getId());
                 bet.setDescription(String.valueOf(betDescription.getText()));
-                bet.setDate(String.valueOf(betDate.getText()));
+
+                DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                Date date = new Date();
+
+                bet.setDate(dateFormat.format(date));
                 bet.setAmount(Integer.parseInt(String.valueOf(betAmount.getText())));
                 bet.setCompleted(0);
                 bet.setWon(0);
                 db.insertBet(bet);
-                Toast.makeText(getBaseContext(), p.getName() + " added successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Bet added successfully", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), MainMenu.class));
 
                 break;
