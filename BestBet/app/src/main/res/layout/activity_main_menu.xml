@@ -1,0 +1,86 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainMenu">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Active Bets"
+        android:id="@+id/btnActiveBets"
+        android:layout_marginTop="76dp"
+        android:height="60dp"
+        android:width="175dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create A Bet"
+        android:id="@+id/btnCreateBet"
+        android:height="60dp"
+        android:width="175dp"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/btnActiveBets"
+        android:layout_alignRight="@+id/btnAddPlayer"
+        android:layout_alignEnd="@+id/btnAddPlayer"
+        android:layout_alignLeft="@+id/btnAddPlayer"
+        android:layout_alignStart="@+id/btnAddPlayer" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add A Person"
+        android:height="60dp"
+        android:width="175dp"
+        android:id="@+id/btnAddPlayer"
+        android:layout_below="@+id/btnCreateBet"
+        android:layout_marginTop="25dp"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/btnLeaderboards"
+        android:layout_alignStart="@+id/btnLeaderboards" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Leaderboards"
+        android:height="60dp"
+        android:width="175dp"
+        android:id="@+id/btnLeaderboards"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/btnAddPlayer"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Past Bets"
+        android:height="60dp"
+        android:width="175dp"
+        android:id="@+id/btnPastBets"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/btnLeaderboards"
+        android:layout_alignRight="@+id/btnLeaderboards"
+        android:layout_alignEnd="@+id/btnLeaderboards"
+        android:layout_alignLeft="@+id/btnCreateBet"
+        android:layout_alignStart="@+id/btnCreateBet" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:fontFamily="sans-serif-light"
+        android:textSize="36dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Best Bet"
+        android:clickable="false"
+        android:editable="false"
+        android:focusable="false" />
+
+
+</RelativeLayout>

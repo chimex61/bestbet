@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">BestBet</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_active_bets">ActiveBets</string>
+    <string name="title_activity_create_bet">CreateBet</string>
+    <string name="title_activity_add_player">AddPlayer</string>
+    <string name="title_activity_leaderboards">Leaderboards</string>
+    <string name="title_activity_past_bets">PastBets</string>
+    <string name="title_activity_bet_details">BetDetails</string>
+</resources>
