@@ -40,7 +40,7 @@ public class BestBetDB
     public static final int    PERSON_GAINS_COL = 4;
 
     // bet table constants
-    public static final String BET_TABLE = "task";
+    public static final String BET_TABLE = "bet";
 
     public static final String BET_ID = "_id";
     public static final int    BET_ID_COL = 0;
@@ -106,8 +106,8 @@ public class BestBetDB
             db.execSQL("INSERT INTO person VALUES (2, 'Bob Saget', 0, 0, 0)");
 
             // insert sample bets
-            db.execSQL("INSERT INTO task VALUES (1, 1, 'Bet Bob he can eat a box of nails', 100, '4/2/2015'), 1, 1)");
-            db.execSQL("INSERT INTO task VALUES (2, 2, 'Bet that the Seahawks will lose tonight', 20, '2/3/2015', 0, 0)");
+            db.execSQL("INSERT INTO bet VALUES (1, 1, 'Bet Bob he can eat a box of nails', 100, '4/2/2015', 1, 1)");
+            db.execSQL("INSERT INTO bet VALUES (2, 2, 'Bet that the Seahawks will lose tonight', 20, '2/3/2015', 0, 0)");
         }
 
         @Override
