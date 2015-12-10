@@ -41,8 +41,8 @@ implements View.OnClickListener{
 
         db = new BestBetDB(this);
 
-        btnBetWon = (Button) findViewById(R.id.btnCreateBet);
-        btnBetLost = (Button) findViewById(R.id.btnCancel);
+        btnBetWon = (Button) findViewById(R.id.btnBetWon);
+        btnBetLost = (Button) findViewById(R.id.btnBetLost);
         btnUpdateBet = (Button) findViewById(R.id.btnUpdateBet);
         btnDeleteBet = (Button) findViewById(R.id.btnDeleteBet);
 
@@ -62,8 +62,6 @@ implements View.OnClickListener{
         betDescription.setText(currentBet.getDescription());
         betAmount.setText(String.valueOf(currentBet.getAmount()));
         betDate.setText(String.valueOf(currentBet.getDate()));
-
-        //Toast.makeText(getBaseContext(), betId, Toast.LENGTH_SHORT).show();
 
         ArrayList<String> names = new ArrayList<String>();
         String currentPerson = "";
@@ -86,7 +84,7 @@ implements View.OnClickListener{
     public void onClick(View v) {
         Bet newBet = db.getBet(betId);
         switch (v.getId()) {
-            case R.id.btnCreateBet:
+            case R.id.btnBetWon:
                 Person person = db.getPerson(nameSpinner.getSelectedItem().toString());
                 person.setWins(person.getWins() + 1);
                 person.setGains(person.getGains() + newBet.getAmount());
@@ -97,7 +95,7 @@ implements View.OnClickListener{
                 Toast.makeText(this, "Bet won successfully", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), MainMenu.class));
                 break;
-            case R.id.btnCancel:
+            case R.id.btnBetLost:
                 Person newPerson = db.getPerson(nameSpinner.getSelectedItem().toString());
                 newBet.setCompleted(1);
                 newBet.setWon(0);
@@ -109,15 +107,20 @@ implements View.OnClickListener{
                 startActivity(new Intent(getApplicationContext(), MainMenu.class));
                 break;
             case R.id.btnUpdateBet:
+                try {
+                    newBet.setPersonId(db.getPerson(nameSpinner.getSelectedItem().toString()).getId());
 
-                newBet.setPersonId(db.getPerson(nameSpinner.getSelectedItem().toString()).getId());
-
-                newBet.setAmount(Integer.parseInt(String.valueOf(betAmount.getText())));
-                newBet.setDate(String.valueOf(betDate.getText()));
-                newBet.setDescription(String.valueOf(betDescription.getText()));
-                db.updateBet(newBet);
-                Toast.makeText(this, "Bet updated successfully", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(), MainMenu.class));
+                    newBet.setAmount(Integer.parseInt(String.valueOf(betAmount.getText())));
+                    newBet.setDate(String.valueOf(betDate.getText()));
+                    newBet.setDescription(String.valueOf(betDescription.getText()));
+                    db.updateBet(newBet);
+                    Toast.makeText(this, "Bet updated successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), MainMenu.class));
+                }
+                catch(Exception e)
+                {
+                    Toast.makeText(this, "Invalid amount", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.btnDeleteBet:
                 db.deleteBet(newBet.getId());

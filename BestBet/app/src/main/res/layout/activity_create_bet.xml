@@ -50,7 +50,7 @@
         android:width="150dp"
         android:layout_marginBottom="15dp"
         android:layout_marginRight="20dp"
-        android:id="@+id/btnCreateBet"
+        android:id="@+id/btnBetWon"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/txtBetAmount" />
 
@@ -62,9 +62,9 @@
         android:text="Cancel"
         android:height="70dp"
         android:width="160dp"
-        android:id="@+id/btnCancel"
-        android:layout_alignTop="@+id/btnCreateBet"
-        android:layout_toRightOf="@+id/btnCreateBet" />
+        android:id="@+id/btnBetLost"
+        android:layout_alignTop="@+id/btnBetWon"
+        android:layout_toRightOf="@+id/btnBetWon" />
 
 
 
@@ -74,7 +74,7 @@
         android:id="@+id/txtBetDescription"
         android:layout_marginTop="75dp"
         android:width="220dp"
-        android:layout_alignRight="@+id/btnCancel" />
+        android:layout_alignRight="@+id/btnBetLost" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -82,8 +82,8 @@
         android:id="@+id/txtBetAmount"
         android:width="250dp"
         android:layout_below="@+id/txtBetDescription"
-        android:layout_alignRight="@+id/btnCancel"
-        android:layout_alignEnd="@+id/btnCancel"
+        android:layout_alignRight="@+id/btnBetLost"
+        android:layout_alignEnd="@+id/btnBetLost"
         android:layout_marginTop="10dp"/>
 
 

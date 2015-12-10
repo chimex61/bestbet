@@ -7,11 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class MainMenu extends AppCompatActivity
     implements View.OnClickListener{
@@ -29,7 +24,7 @@ public class MainMenu extends AppCompatActivity
 
             //get references to buttons
             activeBetsButton = (Button) findViewById(R.id.btnActiveBets);
-            createBetButton = (Button) findViewById(R.id.btnCreateBet);
+            createBetButton = (Button) findViewById(R.id.btnBetWon);
             addPersonButton = (Button) findViewById(R.id.btnAddPlayer);
             leaderboardsButton = (Button) findViewById(R.id.btnLeaderboards);
             pastBetsButton = (Button) findViewById(R.id.btnPastBets);
@@ -48,7 +43,7 @@ public class MainMenu extends AppCompatActivity
                 case R.id.btnActiveBets:
                     startActivity(new Intent(getApplicationContext(), ActiveBets.class));
                     break;
-                case R.id.btnCreateBet:
+                case R.id.btnBetWon:
                     startActivity(new Intent(getApplicationContext(), CreateBet.class));
                     break;
                 case R.id.btnAddPlayer:

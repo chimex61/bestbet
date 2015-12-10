@@ -37,8 +37,8 @@ implements View.OnClickListener{
         setContentView(R.layout.activity_create_bet);
 
         db = new BestBetDB(this);
-        cancelButton = (Button) findViewById(R.id.btnCancel);
-        createBetButton = (Button) findViewById(R.id.btnCreateBet);
+        cancelButton = (Button) findViewById(R.id.btnBetLost);
+        createBetButton = (Button) findViewById(R.id.btnBetWon);
         personSpinner = (Spinner) findViewById(R.id.personSpinner);
         betDescription = (TextView) findViewById(R.id.txtBetDescription);
         betAmount = (TextView) findViewById(R.id.txtBetAmount);
@@ -62,7 +62,7 @@ implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnCreateBet:
+            case R.id.btnBetWon:
                 Bet bet = new Bet();
                 bet.setPersonId(db.getPerson(personSpinner.getSelectedItem().toString()).getId());
                 bet.setDescription(String.valueOf(betDescription.getText()));
@@ -71,15 +71,22 @@ implements View.OnClickListener{
                 Date date = new Date();
 
                 bet.setDate(dateFormat.format(date));
-                bet.setAmount(Integer.parseInt(String.valueOf(betAmount.getText())));
-                bet.setCompleted(0);
-                bet.setWon(0);
-                db.insertBet(bet);
-                Toast.makeText(getBaseContext(), "Bet added successfully", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(), MainMenu.class));
+                try {
+                    bet.setAmount(Integer.parseInt(String.valueOf(betAmount.getText())));
+                    bet.setCompleted(0);
+                    bet.setWon(0);
+                    db.insertBet(bet);
+                    Toast.makeText(getBaseContext(), "Bet added successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), MainMenu.class));
+                }
+                catch(Exception e)
+                {
+                    Toast.makeText(getBaseContext(), "Invalid amount", Toast.LENGTH_SHORT).show();
+                }
+
 
                 break;
-            case R.id.btnCancel:
+            case R.id.btnBetLost:
                 startActivity(new Intent(getApplicationContext(), MainMenu.class));
                 break;
         }
