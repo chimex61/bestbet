@@ -40,9 +40,17 @@ implements View.OnClickListener{
                 String newPlayerName = playerNameTextView.getText().toString();
                 //Creates a player with the given name and inserts player into db
                 Person person = new Person(0, newPlayerName, 0, 0, 0);
-                long insertId = db.insertPerson(person);
-                if(insertId > 0){
-                    Toast.makeText(this, newPlayerName + " added successfully",
+                if (!newPlayerName.trim().equals("")) {
+                    long insertId = db.insertPerson(person);
+
+                    if (insertId > 0) {
+                        Toast.makeText(this, newPlayerName + " added successfully",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else
+                {
+                    Toast.makeText(this, "Can't add player with a blank name",
                             Toast.LENGTH_SHORT).show();
                 }
                 break;

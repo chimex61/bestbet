@@ -27,7 +27,7 @@ implements View.OnClickListener{
 
         leaderboardList = (ListView) findViewById(R.id.leaderboardList);
         db = new BestBetDB(this);
-        people = db.getPeople();
+        people = db.getPeopleSorted();
 
         ArrayAdapter<Person> arrayAdapter = new ArrayAdapter<Person>
                 (this, android.R.layout.simple_list_item_1, people);

@@ -58,8 +58,6 @@ public class ActiveBets extends AppCompatActivity {
 
                         editor.putString("betID", betId);
 
-                        Toast.makeText(getBaseContext(), betId, Toast.LENGTH_SHORT).show();
-
                         editor.commit();
                         startActivity(new Intent(getApplicationContext(), BetDetails.class));
                     }

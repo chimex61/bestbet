@@ -12,9 +12,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CreateBet extends AppCompatActivity
 implements View.OnClickListener{
@@ -36,8 +37,8 @@ implements View.OnClickListener{
         setContentView(R.layout.activity_create_bet);
 
         db = new BestBetDB(this);
-        cancelButton = (Button) findViewById(R.id.btnCancel);
-        createBetButton = (Button) findViewById(R.id.btnCreateBet);
+        cancelButton = (Button) findViewById(R.id.btnBetLost);
+        createBetButton = (Button) findViewById(R.id.btnBetWon);
         personSpinner = (Spinner) findViewById(R.id.personSpinner);
         betDescription = (TextView) findViewById(R.id.txtBetDescription);
         betAmount = (TextView) findViewById(R.id.txtBetAmount);
@@ -61,22 +62,31 @@ implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnCreateBet:
+            case R.id.btnBetWon:
                 Bet bet = new Bet();
-                Person p = people.get(names.indexOf(personSpinner.getSelectedItem().toString()));
-
-                bet.setPersonId(p.getId());
+                bet.setPersonId(db.getPerson(personSpinner.getSelectedItem().toString()).getId());
                 bet.setDescription(String.valueOf(betDescription.getText()));
-                bet.setDate(String.valueOf(betDate.getText()));
-                bet.setAmount(Integer.parseInt(String.valueOf(betAmount.getText())));
-                bet.setCompleted(0);
-                bet.setWon(0);
-                db.insertBet(bet);
-                Toast.makeText(getBaseContext(), p.getName() + " added successfully", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(), MainMenu.class));
+
+                DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                Date date = new Date();
+
+                bet.setDate(dateFormat.format(date));
+                try {
+                    bet.setAmount(Integer.parseInt(String.valueOf(betAmount.getText())));
+                    bet.setCompleted(0);
+                    bet.setWon(0);
+                    db.insertBet(bet);
+                    Toast.makeText(getBaseContext(), "Bet added successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), MainMenu.class));
+                }
+                catch(Exception e)
+                {
+                    Toast.makeText(getBaseContext(), "Invalid amount", Toast.LENGTH_SHORT).show();
+                }
+
 
                 break;
-            case R.id.btnCancel:
+            case R.id.btnBetLost:
                 startActivity(new Intent(getApplicationContext(), MainMenu.class));
                 break;
         }

@@ -40,6 +40,10 @@
             android:name=".BetDetails"
             android:label="@string/title_activity_bet_details" >
         </activity>
+        <activity
+            android:name=".PastBetDetails"
+            android:label="@string/title_activity_past_bet_details" >
+        </activity>
     </application>
 
 </manifest>

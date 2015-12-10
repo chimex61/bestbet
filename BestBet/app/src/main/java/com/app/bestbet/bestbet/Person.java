@@ -69,6 +69,6 @@ public class Person
     //Overrides the toString method, used for displaying the players in the leaderboard correctly
     @Override
     public String toString() {
-        return this.name + "\nWins: " + this.wins + " Losses: " + this.losses + " Gains: " + this.gains;
+        return this.name + "\nWins: " + this.wins + " Losses: " + this.losses + " Net Gain: $" + this.gains;
     }
 }

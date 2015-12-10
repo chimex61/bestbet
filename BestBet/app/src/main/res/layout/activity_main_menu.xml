@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:text="View Active Bets"
         android:id="@+id/btnActiveBets"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="115dp"
         android:height="60dp"
         android:width="175dp"
         android:layout_alignParentTop="true"
@@ -20,10 +20,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create A Bet"
-        android:id="@+id/btnCreateBet"
+        android:id="@+id/btnBetWon"
         android:height="60dp"
         android:width="175dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_below="@+id/btnActiveBets"
         android:layout_alignRight="@+id/btnAddPlayer"
         android:layout_alignEnd="@+id/btnAddPlayer"
@@ -37,8 +37,8 @@
         android:height="60dp"
         android:width="175dp"
         android:id="@+id/btnAddPlayer"
-        android:layout_below="@+id/btnCreateBet"
-        android:layout_marginTop="25dp"
+        android:layout_below="@+id/btnBetWon"
+        android:layout_marginTop="15dp"
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/btnLeaderboards"
         android:layout_alignStart="@+id/btnLeaderboards" />
@@ -50,7 +50,7 @@
         android:height="60dp"
         android:width="175dp"
         android:id="@+id/btnLeaderboards"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_below="@+id/btnAddPlayer"
         android:layout_centerHorizontal="true" />
 
@@ -61,26 +61,21 @@
         android:height="60dp"
         android:width="175dp"
         android:id="@+id/btnPastBets"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_below="@+id/btnLeaderboards"
         android:layout_alignRight="@+id/btnLeaderboards"
         android:layout_alignEnd="@+id/btnLeaderboards"
-        android:layout_alignLeft="@+id/btnCreateBet"
-        android:layout_alignStart="@+id/btnCreateBet" />
+        android:layout_alignLeft="@+id/btnBetWon"
+        android:layout_alignStart="@+id/btnBetWon" />
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:fontFamily="sans-serif-light"
-        android:textSize="36dp"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="Best Bet"
-        android:clickable="false"
-        android:editable="false"
-        android:focusable="false" />
-
+        android:id="@+id/imageView"
+        android:src="@drawable/bestbet"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="60dp"
+        android:layout_above="@+id/btnBetWon" />
 
 </RelativeLayout>
